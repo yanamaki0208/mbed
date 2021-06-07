@@ -1,7 +1,10 @@
 #include "mbed.h"
 //slave
-/*
-   参考元：https://os.mbed.com/questions/77669/UARTshort-int-mbedmbed/
+/*analogin(p20)から入手したセンサの値をmaster側に送信します。
+一つのmbedに複数のセンサやモータをつなぐと、GNDを介して電流が他の機器に逆流してしまい？　
+PWMの調子が狂うので、mbedを２台に分けて使おうと思いました。（GND作りをしても良かったが、回路設計面倒そうだったので・・・）
+あまりmbedや回路について詳しくないので質問等はお答え致しかねます。アドバイス等ありましたら歓迎です。
+参考元：https://os.mbed.com/questions/77669/UARTshort-int-mbedmbed/
  */
 
 AnalogIn ain(p20);
