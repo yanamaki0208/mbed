@@ -1,0 +1,27 @@
+#include "mbed.h"
+/*公式サイトのプログラム（https://os.mbed.com/cookbook/Servo）で動かすと
+180°動くはずのサーボモーターが90°しか動かないので、このプログラムを使いました。
+サーボモーターによってdefineの値が違うので、増減して調整してください。
+あまりmbedや回路について詳しい訳ではないので質問等はお答え致しかねます。アドバイス等ありましたら歓迎です。
+参考元：https://www.ne.senshu-u.ac.jp/~iida/pc/?p=340
+*/
+
+
+#define MIN_PW 700    // GWS pico std 700
+#define MAX_PW 2260   // GWS pico std 2260
+ 
+PwmOut servo(p21);
+ 
+int main() {
+    servo.period_ms(20);          // servo requires a 20ms period
+    wait(1);
+    
+    while(1) {
+        servo.pulsewidth_us(MIN_PW);
+        wait(1);
+        servo.pulsewidth_us(MIN_PW + (MAX_PW - MIN_PW) / 2);
+        wait(1);
+        servo.pulsewidth_us(MAX_PW);
+        wait(1);
+    }        
+}
