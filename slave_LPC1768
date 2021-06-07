@@ -1,1 +1,38 @@
+#include "mbed.h"
+//slave
+/*
+   参考元：https://os.mbed.com/questions/77669/UARTshort-int-mbedmbed/
+ */
 
+AnalogIn ain(p20);
+Serial pc(USBTX,USBRX);
+Serial device(p9,p10);
+InterruptIn Uart(p8);//メインマイコンからのピン割り込みピン
+DigitalOut led(LED1);//オンボードLED
+struct {
+        char highbyte;
+        char lowbyte;
+        short intdat;
+} data;
+ 
+void sendTomaster(){
+        data.highbyte = data.intdat%256;//分解
+        data.lowbyte = data.intdat/256;//分解
+        device.putc('H');//ヘッダをつける
+        device.putc(data.highbyte);
+        device.putc(data.lowbyte);
+        led = 0;
+        pc.printf("%lf\r\n",ain.read());
+}
+ 
+int main() {
+ 
+        led = 0;
+        Uart.rise(&sendTomaster);
+        device.baud(115200);
+        while(1) {
+                data.intdat = 500;//送信したいデータを500にセット
+                wait_ms(650);
+                led =!led;
+        }
+}
