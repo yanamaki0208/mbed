@@ -1,7 +1,9 @@
 #include "mbed.h"
 //master
-/*slaveのp20から入手したセンサの値を受信し、PCのシリアルモニタに表示
-　参考元：https://os.mbed.com/questions/77669/UARTshort-int-mbedmbed/
+/*slav側のanalogin(p20)から入手したセンサの値を受信し、PCのシリアルモニタに表示します。
+一つのmbedに複数のセンサやモータをつなぐと、GNDを介して電流が他の機器に逆流してしまい？　
+PWMの調子が狂うので、mbedを２台に分けて使おうと思いました。（GND作りをしても良かったが、回路設計面倒そうだったので・・・）
+ 参考元：https://os.mbed.com/questions/77669/UARTshort-int-mbedmbed/
  */
 Serial pc(USBTX,USBRX);
 Serial device(p9,p10);//スレーブにつないでいるTX,RX
