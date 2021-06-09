@@ -1,5 +1,6 @@
-![PXL_20210607_024342640](https://user-images.githubusercontent.com/66021066/120952502-24178b80-c786-11eb-8787-4a1ca48a6422.jpg)
-master_LPC1768とslave_LPC1768を使用している様子 
+![PXL_20210609_154754903](https://user-images.githubusercontent.com/66021066/121388121-2b0cec80-c986-11eb-91bf-edffa2d72c10.jpg)
+![PXL_20210609_154830596](https://user-images.githubusercontent.com/66021066/121387885-fac54e00-c985-11eb-91ab-01ad325b3990.jpg)
+SPI_master_LPC1768とSPI_slave_LPC1768を使用している様子
 
 
 
