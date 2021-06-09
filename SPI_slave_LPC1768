@@ -5,7 +5,7 @@
 PWMの調子が狂うので、mbedを２台に分けて使おうと思いました。（GND作りをしても良かったが、回路設計面倒そうだったので・・・）
 あまりmbedや回路について詳しい訳ではないので質問等はお答え致しかねます。アドバイス等ありましたら歓迎です。
 */
-Serial pc(USBTX, USBRX); // tx, rx
+//Serial pc(USBTX, USBRX); // tx, rx //masterじゃない方のシリアルモニタも見たい場合に使用
 SPISlave device(p5, p6, p7, p8); // mosi, miso, sclk, ssel
 AnalogIn ain(p20);
 double y = 0;
@@ -17,7 +17,7 @@ int main() {
             y = ain.read();
             z = y * 1000;
             z = z % 0x100;
-            pc.printf("%lf",ain.read());
+            //pc.printf("%lf",ain.read()); //masterじゃない方のシリアルモニタも見たい場合に使用
             device.reply(z);         // Make this the next reply
         }
     }
