@@ -1,5 +1,5 @@
 **＃工業大学４年の雑な人がやっているので、お見苦しい点も多々あるかもしれませんがよろしくお願いいたします＃** 
-## SPI_master_LPC1768とSPI_slave_LPC1768を使用している様子
+## SPI_master_LPC1768とSPI_slave_LPC1768を使用している様子（mbedとmbed間の通信）
 ![PXL_20210609_154754903](https://user-images.githubusercontent.com/66021066/121388121-2b0cec80-c986-11eb-91bf-edffa2d72c10.jpg)
 ![PXL_20210609_154830596](https://user-images.githubusercontent.com/66021066/121387885-fac54e00-c985-11eb-91ab-01ad325b3990.jpg)  
 左のmbed(master)がCOM4、右のmbed(slave)がCOM3に接続されています。  
