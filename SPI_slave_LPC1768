@@ -4,6 +4,7 @@
 一つのmbedに複数のセンサやモータをつなぐと、GNDを介して電流が他の機器に逆流してしまい？　
 PWMの調子が狂うので、mbedを２台に分けて使おうと思いました。（GND作りをしても良かったが、回路設計面倒そうだったので・・・）
 あまりmbedや回路について詳しい訳ではないので質問等はお答え致しかねます。アドバイス等ありましたら歓迎です。
+参考元：https://os.mbed.com/users/okini3939/notebook/SPISlave_jp/
 */
 //Serial pc(USBTX, USBRX); // tx, rx //masterじゃない方のシリアルモニタも見たい場合に使用
 SPISlave device(p5, p6, p7, p8); // mosi, miso, sclk, ssel
