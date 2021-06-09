@@ -5,7 +5,7 @@
 左のmbed(master)がCOM4、右のmbed(slave)がCOM3に接続されています。  
 なんとなく手を近づける前後で値が変化してることが分かるので成功です。（ややノイズが気になる）  
   
-## DCmoter_calibrationを使用している様子
+## DCmoter_calibrationを使用している様子（DCモーターの正転・逆転・PWMの増減）
 ![image](https://user-images.githubusercontent.com/66021066/120954193-963d9f80-c789-11eb-8378-a7ea72a6206f.png)
 どの程度までPWM値が低くても負荷を動かすことができるのかというのの確認用として使ってます。  
 サーボモータのキャリブレーション用のプログラムを少しいじって作りました。
