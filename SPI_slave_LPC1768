@@ -18,7 +18,7 @@ int main() {
             y = ain.read();
             z = y * 1000;
             z = z % 0x100;
-            //pc.printf("%lf",ain.read()); //masterじゃない方のシリアルモニタも見たい場合に使用
+            //pc.printf("%lf\n",ain.read()); //masterじゃない方のシリアルモニタも見たい場合に使用
             device.reply(z);         // Make this the next reply
         }
     }
