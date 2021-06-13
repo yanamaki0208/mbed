@@ -1,0 +1,17 @@
+#include "mbed.h"
+//SPI_slave_LPC1768
+
+Serial pc(USBTX, USBRX); // tx, rx 
+SPISlave device(p5, p6, p7, p8); // mosi, miso, sclk, ssel
+AnalogIn ain(p20);
+int main() {              // Prime SPI with first reply
+    while(1) {
+        if(device.receive()) {
+            double y = ain.read();
+            int z = y * 1000;
+            z = z % 0x100;
+            pc.printf("%lf\n",ain.read()); 
+            device.reply(z);         // Make this the next reply
+        }
+    }
+}
