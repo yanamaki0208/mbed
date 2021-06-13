@@ -1,0 +1,105 @@
+#include "mbed.h"
+#include "QEI.h"
+#include "Servo.h"
+//SPI_master_LPC1768 
+/*slave側のp20から入手したセンサの値を受信し、処理に用いる
+　参考元：https://os.mbed.com/users/okini3939/notebook/SPI_jp/
+ */
+SPI spi(p5, p6, p7); // mosi, miso, sclk
+DigitalOut cs(p8);  
+DigitalOut rotation(p21);
+PwmOut moter(p22);
+Servo myservo(p23);
+DigitalOut led1(LED1);
+DigitalOut led2(LED2);
+Serial pc(USBTX, USBRX);
+
+int i = 0;
+int j = 0;
+int m = 0;
+double n = 0;
+double servoang = 0;
+float pwm = 0.03; //PWM's farst value 
+float dir = 1.0;   //DIR's first value
+QEI wheel (p29, p30, NC, 1024,QEI::X2_ENCODING);
+double w = wheel.getPulses();
+int main() {
+    spi.format(16,0);
+    spi.frequency(1000000);
+    
+    while (1){
+    while(myservo > 0){
+        cs = 0;
+        int ain = spi.write(ain);
+        servoang -= 0.05; //0.025
+        myservo = servoang;
+        led1 = 1;
+        
+        if(ain < 59000) {
+            i = 0;
+            }
+        if(ain > 59000) {
+            i++;
+            }
+        if(j < i){
+           j = i;
+           m = i;
+           n = wheel.getPulses(); 
+            }
+            
+        pc.printf("[%d]%d max = %d  wheel = %i servoang = %lf\n",i,ain,m,wheel.getPulses(),servoang);
+        //pc.printf("%d %i\n",m,wheel.getPulses());
+        cs = 1;
+       wait(0.01); //def 0.01
+        }
+   
+    moter = pwm;
+    rotation = dir;
+    led2 = 1.0;
+    wait(1.0);
+    
+    moter = 0;
+    led2 = 0;
+    
+    
+    if(w > 10000000){ /*max enkoder value or aturyoku senceor' value=1 */
+        break;
+            }
+    while(myservo < 1){
+        cs = 0;
+        int ain = spi.write(ain);
+        servoang += 0.075;
+        myservo = servoang;
+        led1 = 0;
+    
+        if(ain < 59000) {
+            i = 0;
+            }
+        if(ain > 59000) {
+            i++;
+            }
+        if(j < i){
+           j = i;
+           m = i;
+           n = wheel.getPulses(); 
+            }
+            
+        pc.printf("[%d]%d max = %d  wheel = %i servoang = %lf\n",i,ain,m,wheel.getPulses(),servoang);
+        //pc.printf("%d %i\n",m,wheel.getPulses());        
+        cs = 1;
+        wait(0.01); //def 0.01
+        }
+           
+    moter = pwm;
+    rotation = dir;
+    led2 = 1.0;
+    wait(1.0);
+    
+    moter = 0;
+    led2 = 0;
+
+
+
+    }
+    
+}
